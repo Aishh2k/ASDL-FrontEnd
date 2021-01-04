@@ -82,7 +82,7 @@ class Booking extends Component {
 
                         <div className="booking-textbox">
                             <FontAwesomeIcon icon = {faCalendarAlt} />
-                            <input classname = "dateoftravel" name="dateoftravel" type="datetime-local" value={this.state.dateoftravel} onChange={this.handleChange} placeholder="Travel Date"  required/>
+                            <input classname = "dateoftravel" name="dateoftravel" type="date" value={this.state.dateoftravel} onChange={this.handleChange} placeholder="Travel Date"  required/>
                         </div>
 
                         <div  className="booking-textbox">

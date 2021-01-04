@@ -6,21 +6,16 @@ class Train extends Component {
     constructor(props){
         super(props)
         this.state={
-            Trains: {
-                available : [],
-                reserved : [],
-            }
+            Train1 : [],
+            avail : [],
+            res : [],
+            
+
         }
         this.changeRoute=this.changeRoute.bind(this)
     }
 
-    componentDidMount(){
-        this.setState({
-
-
-
-        })
-    }
+   
 
 
     changeRoute(){
@@ -28,7 +23,25 @@ class Train extends Component {
         this.props.history.push(path)
     }
     render() {
-        const data = this.props.history.location.state;
+        this.state.Train1 = this.props.history.location.state;
+        
+
+        var obj = this.state.Train1.avail_train
+        for (var key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            var val = obj[key];
+            this.state.avail.push(val)
+          }
+        }
+
+
+        var obj = this.state.Train1.reserved_train
+        for (var key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            var val = obj[key];
+            this.state.res.push(val)
+          }
+        }
 
      
 
@@ -55,14 +68,14 @@ class Train extends Component {
                         </thead>
                         <tbody>
                         {
-                             available.map((item) => (
-                                <tr key={item.TrainNO}>
-                                     <td>{item.TrainNO}</td>
-                                    <td>{item.Trainname}</td>
-                                    <td>{item.Dep}</td>
-                                    <td>{item.Arrival}</td>
+                             this.state.avail.map((item) => (
+                                <tr>
+                                     <td>{item.train_id}</td>
+                                    <td>{item.train_name}</td>
+                                    <td>{item.departure}</td>
+                                    <td>{item.arrival}</td>
                                     <td> ₹ {item.Price}</td>
-                                    <td>{item.Seats}</td>
+                                    <td>{item.available_seats}</td> 
                                     <td><button onClick={this.changeRoute} className="btn btn-primary pull-right">Book</button></td>
 
 
@@ -85,7 +98,7 @@ class Train extends Component {
                             <th>Time of Dep.</th>
                             <th>Time of Arrival</th>
                             <th>Price</th>
-                            <th>Available Seats </th>
+                            {/* <th>Waiting List </th> */}
                             <th> Booking</th>
 
 
@@ -93,18 +106,18 @@ class Train extends Component {
                         </thead>
                         <tbody>
                         {
-                             reserved.map((item) => (
-                                <tr key={item.TrainNO}>
-                                     <td>{item.TrainNO}</td>
-                                    <td>{item.Trainname}</td>
-                                    <td>{item.Dep}</td>
-                                    <td>{item.Arrival}</td>
-                                    <td> ₹ {item.Price}</td>
-                                    <td>{item.Seats}</td>
-                                    <td><button onClick={this.changeRoute} className="btn btn-primary pull-right">Book</button></td>
+                             this.state.res.map((item) => (
+                                <tr>
+                                <td>{item.train_id}</td>
+                               <td>{item.train_name}</td>
+                               <td>{item.departure}</td>
+                               <td>{item.arrival}</td>
+                               <td> ₹ {item.Price}</td>
+                               {/* <td>{item.waitinglist}</td>  */}
+                               <td><button onClick={this.changeRoute} className="btn btn-primary pull-right">Book</button></td>
 
 
-                                </tr>
+                           </tr>
                             ))
                         }
                             
