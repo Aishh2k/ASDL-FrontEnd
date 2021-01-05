@@ -98,7 +98,7 @@ class Train extends Component {
                             <th>Time of Dep.</th>
                             <th>Time of Arrival</th>
                             <th>Price</th>
-                            {/* <th>Waiting List </th> */}
+                            <th>Waiting List </th>
                             <th> Booking</th>
 
 
@@ -113,7 +113,7 @@ class Train extends Component {
                                <td>{item.departure}</td>
                                <td>{item.arrival}</td>
                                <td> ₹ {item.Price}</td>
-                               {/* <td>{item.waitinglist}</td>  */}
+                               <td>WL - {item.reservation_queue}</td>
                                <td><button onClick={this.changeRoute} className="btn btn-primary pull-right">Book</button></td>
 
 
