@@ -19,7 +19,7 @@ class Train extends Component {
 
 
     changeRoute(){
-        let path = `/Payment`;
+        let path = `/Passenger`;
         this.props.history.push(path)
     }
     render() {
