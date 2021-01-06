@@ -3,7 +3,6 @@ import LandingPage from './Pages/LandingPage'
 import Booking from './Pages/Booking'
 import Account from './Pages/Account'
 import DashNav from './DashNav'
-import DashSide from './DashSide'
 import Train from './Pages/Train'
 import { Switch, Route } from 'react-router-dom';
 
@@ -13,7 +12,6 @@ class Dashboard extends Component {
         return (
             <div>
                 <DashNav history={this.props.history}/>
-                <DashSide/>
                 <Switch>
                                 {/* different pages */}
                    <Route  path="/Dashboard/Booking"> <Booking history={this.props.history}/> </Route> 

@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import '../../../Css/LandingPage.css'
+
 
 class LandingPage extends Component {
     render() {
         return (
-            <div id="main-content">
+            <div id="landingPage">
                 Landing Pageeeeeee
             </div>
         )
