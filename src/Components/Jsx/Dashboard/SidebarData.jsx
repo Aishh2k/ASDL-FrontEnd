@@ -18,6 +18,14 @@ export const SidebarData =[
 
     },
     {
+        title:'Train Status',
+        path:'/Dashboard/TrainStatus',
+        cName:'sidebar-item',
+        icon: faListAlt
+
+
+    },
+    {
         title:'Account',
         path:'/Dashboard/Account',
         cName:'sidebar-item',

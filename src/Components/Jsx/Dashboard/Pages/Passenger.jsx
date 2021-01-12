@@ -67,7 +67,7 @@ class Passenger extends Component {
 
         console.log(this.state.pax)
 
-        let path = `/Payment`;
+        let path = `/Dashboard/Payment`;
         this.props.history.push(path)
           
      }
@@ -76,12 +76,12 @@ class Passenger extends Component {
 
     render() {
         return (
-            <div id="content" style={{marginTop:"30px"}} >
+            <div id="content" style={{marginTop:"90px"}} >
                 <div id="train-deets">
                 <h4 style={{float:"left"}}> Passenger Details: </h4>
                 <button  onClick={(e) => this.addPax(e)} className="btn  mb-4 btn-primary pull-right" style={{float:"right",width:"200px"}}>Add Pax</button>
                 </div>
-                    <table className="table table-bordered table-xs-responsive table-hover">
+                    <table className="table table-bordered table-xs-responsive">
                         <thead className="thead-dark">  
                         <tr>
                             <th>Name</th>

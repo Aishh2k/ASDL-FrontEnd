@@ -31,7 +31,7 @@ class Payment extends Component {
       async handleSubmit(event){
         event.preventDefault();
            
-        this.props.history.push('/Receipt');  
+        this.props.history.push('/Dashboard/Receipt');  
      }
     
     

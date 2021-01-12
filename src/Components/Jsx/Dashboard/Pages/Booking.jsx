@@ -57,7 +57,6 @@ class Booking extends Component {
         
     })
      
-    // .catch( error => console.error(error))
 
     }
     
@@ -68,7 +67,7 @@ class Booking extends Component {
                 <div className="booking-form">
                     <h3>Book Tickets</h3>
                     
-                    <form autoComplete="off">
+                    <form onSubmit={this.handleSubmit}  autoComplete="off">
                         
                         <div className="booking-textbox">
                             <FontAwesomeIcon icon = {faTrain} />
@@ -105,7 +104,7 @@ class Booking extends Component {
                             <input classname ="passengers" name="passengers" placeholder="0" type="number" min="1" max="7" value={this.state.passengers} onChange={this.handleChange}  required/>
                             
                         </div>
-                        <input className="submit_booking" type="submit" onClick={this.handleSubmit} value="Search"/><br/>
+                        <input className="submit_booking" type="submit" value="Search"/><br/>
                     </form>
 
 

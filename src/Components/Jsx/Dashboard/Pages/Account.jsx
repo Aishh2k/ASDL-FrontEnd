@@ -47,20 +47,20 @@ class Account extends Component {
                         <form id="account-form">
 
                             <div >
-                            <label for="Aname">Name:</label>
-                            <input id="Aname" value={this.state.Aname} name="Aname" type="text" onChange={this.handleChange} className="form-control" placeholder="Name"  />
-                            
-                            <label for="Age">Age:</label>
-                            <input  id="Age" value={this.state.Age} name="Age" type="number" onChange={this.handleChange} className="form-control" placeholder="Age" />
-                            
-                            <label for="email">Email:</label>
-                            <input id="email" value={this.state.email}  name="email" type="text" onChange={this.handleChange} className="form-control" placeholder="Email" />
-                            
-                            <label for="phone">Phone:</label>
-                            <input id="phone" value={this.state.phone} name="phone" type="text" onChange={this.handleChange} className="form-control" placeholder="Phone"  />
+                                <label for="Aname">Name:</label>
+                                <input id="Aname" value={this.state.Aname} name="Aname" type="text" onChange={this.handleChange} className="form-control" placeholder="Name"  />
+                                
+                                <label for="Age">Age:</label>
+                                <input  id="Age" value={this.state.Age} name="Age" type="number" onChange={this.handleChange} className="form-control" placeholder="Age" />
+                                
+                                <label for="email">Email:</label>
+                                <input id="email" value={this.state.email}  name="email" type="text" onChange={this.handleChange} className="form-control" placeholder="Email" />
+                                
+                                <label for="phone">Phone:</label>
+                                <input id="phone" value={this.state.phone} name="phone" type="text" onChange={this.handleChange} className="form-control" placeholder="Phone"  />
                             </div>
                             
-                            <button  id="account-button" type="button" onClick={this.updateProfile} id="submit" name="submit" className="btn btn-primary  mt-4 pull-right">Update</button>
+                            <button  id="account-button" type="button" onClick={this.updateProfile} id="submit" name="submit" className="submit_booking mt-4 pull-right">Update</button>
                         </form>
                     </div>
                 </div>
