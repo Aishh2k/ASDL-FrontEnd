@@ -5,7 +5,8 @@ import '../Css/Register.css'
 
 const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
 const validPasswordRegex = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i);
-const validPhoneNoRegex =RegExp(/^((\+\d{1,2}|1)[\s.-]?)?\(?[2-9](?!11)\d{2}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/i);
+const validPhoneNoRegex = new RegExp(/^(\d{10}|\d{12})$/i);
+const validAgeRegex = new RegExp('^[0-9]+$');
 
 export class Register extends Component {
     constructor(){
@@ -21,7 +22,8 @@ export class Register extends Component {
           errors:{
               email:"",
               password:"",
-              phone:""
+              phone:"",
+              age:""
           }
         }
         this.handleChange=this.handleChange.bind(this)
@@ -52,6 +54,12 @@ export class Register extends Component {
                 ? ''
                 : 'Phone No. not valid.';
             break;
+        case 'age': 
+            errors.age = 
+            validAgeRegex.test(value)
+                ? ''
+                : 'Age not valid.';
+            break;
         
         default:
             break;
@@ -79,7 +87,7 @@ export class Register extends Component {
        })       
        .then( data =>{ 
         if (data.status=="400")
-        {   console.log("Hello")
+        {   
             this.setState({
                 available: "Email already exists."
             })
@@ -97,7 +105,6 @@ export class Register extends Component {
  }
       
     render() {
-
         return (
 
             <div className="register">
@@ -119,15 +126,13 @@ export class Register extends Component {
                         <div className="register-textbox">
                             <FontAwesomeIcon icon={faEnvelope} />
                             <input className="email" name="email" type="text" value={this.state.email} onChange={this.handleChange}  placeholder="Enter Email" required/>
-                            { this.state.errors.email > 0 &&  
-                             <p className='error'>{ this.state.errors.email}</p>}
+                            
                         </div>
 
                         <div className="register-textbox">
                             <FontAwesomeIcon icon={faPhoneAlt} />
                             <input className="phone" name="phone" type="text" value={this.state.phone} onChange={this.handleChange}  placeholder="Enter Phone Number" required/>
-                            { this.state.errors.phone > 0 &&  
-                             <p className='error'>{ this.state.errors.phone}</p>}
+                            
                         </div>
                         
                         <div className="register-textbox">
@@ -138,14 +143,25 @@ export class Register extends Component {
                         <div className="register-textbox">
                             <FontAwesomeIcon icon={faLock} />
                             <input className="password" name="password" type="password" value={this.state.password} onChange={this.handleChange}  placeholder="Enter Password" required/>
-                            { this.state.errors.password > 0 &&  
-                             <p className='error'>{ this.state.errors.password}</p>}
+                            
                         </div>
 
                             
                         <input className="register-submit" type="submit"  value="Register"/><br/>
                         
-                        { this.state.available > 0 &&  
+                        { this.state.errors.email.length > 0 &&  
+                             <p className='error'>{ this.state.errors.email}</p>}
+
+                        { this.state.errors.phone.length > 0 &&  
+                             <p className='error'>{ this.state.errors.phone}</p>}
+                        
+                        { this.state.errors.password.length > 0 &&  
+                             <p className='error'>{ this.state.errors.password}</p>}
+                        
+                        { this.state.errors.age.length > 0 &&  
+                             <p className='error'>{ this.state.errors.age}</p>}
+
+                        { this.state.available.length > 0 &&  
                              <p className='error'>{this.state.available}</p>}
 
                         </form>

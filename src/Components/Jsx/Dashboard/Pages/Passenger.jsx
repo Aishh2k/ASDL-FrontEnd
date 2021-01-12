@@ -76,12 +76,10 @@ class Passenger extends Component {
 
     render() {
         return (
-            <div id="main-content" >
+            <div id="content" style={{marginTop:"30px"}} >
                 <div id="train-deets">
-                
-                <div style={{marginBottom:"35px"}}>
                 <h4 style={{float:"left"}}> Passenger Details: </h4>
-                <button onClick={(e) => this.addPax(e)} className="btn btn-primary pull-right" style={{float:"right"}}>Add Pax</button>
+                <button  onClick={(e) => this.addPax(e)} className="btn  mb-4 btn-primary pull-right" style={{float:"right",width:"200px"}}>Add Pax</button>
                 </div>
                     <table className="table table-bordered table-xs-responsive table-hover">
                         <thead className="thead-dark">  
@@ -132,12 +130,11 @@ class Passenger extends Component {
                         </tbody>
                     </table>
                     
+                    <div className="text-center">
+
+                <input style={{margin:"0 auto" ,width:"350px"}} className="pax-submit" className="btn mt-4 btn-primary" type="submit" onClick={this.handleSubmit} value="Pay"/><br/>
 
                 </div>
-
-                <input className="pax-submit" type="submit" onClick={this.handleSubmit} value="Pay"/><br/>
-
-                
                 </div>
                 
         )
