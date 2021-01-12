@@ -14,11 +14,7 @@ export class App extends Component {
           <Switch>
                 <Route exact path="/Login" component={Login} />
                 <Route path="/Dashboard" component={ Dashboard } /> 
-                <Route path="/Register" component={ Register} ></Route>
-                
-                
-                
-                      
+                <Route path="/Register" component={ Register} ></Route>    
               
           </Switch>  
       </BrowserRouter>        

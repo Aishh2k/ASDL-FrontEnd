@@ -66,7 +66,7 @@ class Payment extends Component {
                             <input classname ="expiry" name="expiry" placeholder="Date of Expiry" type="text" value={this.state.expiry} onChange={this.handleChange}  required/>
                             
                         </div>
-                        <input className="payment-submit" type="submit" onClick={this.handleSubmit} value="Pay $$$"/><br/>
+                        <input className="payment-submit" type="submit" onClick={this.handleSubmit} value="Make Payment"/><br/>
                     </form>
 
 

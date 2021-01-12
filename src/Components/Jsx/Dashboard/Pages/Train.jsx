@@ -9,8 +9,6 @@ class Train extends Component {
             Train1 : [],
             avail : [],
             res : [],
-            price:"200"
-            
 
         }
         this.changeRoute=this.changeRoute.bind(this)
@@ -20,7 +18,7 @@ class Train extends Component {
 
 
     changeRoute(){
-        let path = `/Passenger`;
+        let path = `/Dashboard/Passenger`;
         this.props.history.push(path)
     }
     render() {
@@ -60,7 +58,7 @@ class Train extends Component {
                             <th>Train Name</th>
                             <th>Time of Dep.</th>
                             <th>Time of Arrival</th>
-                            <th>Price</th>
+                            <th>Minimum Price</th>
                             <th>Available Seats </th>
                             <th> Booking</th>
 
@@ -75,7 +73,7 @@ class Train extends Component {
                                     <td>{item.train_name}</td>
                                     <td>{item.departure}</td>
                                     <td>{item.arrival}</td>
-                                    <td> ₹ {this.state.price}</td>
+                                    <td> ₹ {item.price}</td>
                                     <td>{item.available_seats}</td> 
                                     <td><button onClick={this.changeRoute} className="btn btn-primary pull-right">Book</button></td>
 
@@ -113,7 +111,7 @@ class Train extends Component {
                                <td>{item.train_name}</td>
                                <td>{item.departure}</td>
                                <td>{item.arrival}</td>
-                               <td> ₹ {this.state.price}</td>
+                               <td> ₹ {item.price}</td>
                                <td>WL - {item.reservation_queue}</td>
                                <td><button onClick={this.changeRoute} className="btn btn-primary pull-right">Book</button></td>
 
