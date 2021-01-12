@@ -105,7 +105,7 @@ class Passenger extends Component {
                                     <option value=" ">Sex</option>
                                     <option value="M">Male</option>
                                     <option value="F">Female</option>
-                                    <option value="T">Transgender</option>
+                                    <option value="O">Others</option>
                                     </select>
                                     </td>
                                     
