@@ -102,7 +102,7 @@ class Passenger extends Component {
                                     
                                     <td>
                                     <select className="Sex" name="sex" onChange={e => {this.sexChange(e,index)}} value={person.sex}>
-                                    <option value=" ">Sex</option>
+                                    <option hidden value=" ">Sex</option>
                                     <option value="M">Male</option>
                                     <option value="F">Female</option>
                                     <option value="O">Others</option>
@@ -111,7 +111,7 @@ class Passenger extends Component {
                                     
                                     <td>
                                     <select className="Berth" name="berth" onChange={e => {this.berthChange(e,index)}} value={person.berth}>
-                                    <option value=" ">Berth</option>
+                                    <option hidden value=" ">Berth</option>
                                     <option value="LB">Lower Berth</option>
                                     <option value="MB">Middle Berth</option>
                                     <option value="UB">Upper Berth</option>
