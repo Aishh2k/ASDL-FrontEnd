@@ -42,6 +42,8 @@ class Payment extends Component {
     
     render() {
 
+        
+
         this.state.data = this.props.history.location.state;
         console.log(this.state.data)
         this.state.price="₹ " + this.state.data.price

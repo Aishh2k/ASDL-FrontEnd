@@ -10,6 +10,7 @@ import Payment from './Pages/Payment'
 import Receipt from './Pages/Receipt'
 import Passenger from './Pages/Passenger'
 import BookingHistory from './Pages/BookingHistory'
+import Ticket from './Pages/Ticket'
 
 class Dashboard extends Component {
     render() {
@@ -26,6 +27,7 @@ class Dashboard extends Component {
                     <Route  path="/Dashboard/Receipt" > <Receipt history={this.props.history}/> </Route>
                     <Route  path="/Dashboard/Passenger"> <Passenger history={this.props.history}/> </Route> 
                     <Route  path="/Dashboard/BookingHistory"> <BookingHistory history={this.props.history}/> </Route> 
+                    <Route  path="/Dashboard/Ticket"> <Ticket history={this.props.history}/> </Route> 
                    <Route  path="/Dashboard"> <LandingPage/> </Route>
 
                 </Switch>            

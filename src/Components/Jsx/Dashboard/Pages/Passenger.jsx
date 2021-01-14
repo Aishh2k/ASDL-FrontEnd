@@ -150,7 +150,7 @@ class Passenger extends Component {
                                     <option hidden value=" ">Sex</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
-                                    <option value="Others">Others</option>
+                                    <option value="Other">Others</option>
                                     </select>
                                     </td>
                                     

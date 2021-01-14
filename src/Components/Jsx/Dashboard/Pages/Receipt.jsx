@@ -19,6 +19,7 @@ class Receipt extends Component{
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.ticketView = this.ticketView.bind(this);
     }
 
     /*handleChange(event){
@@ -27,11 +28,17 @@ class Receipt extends Component{
           })
       }*/
 
-    async handleSubmit(event){
+    async ticketView(event){
        event.preventDefault();
           
-        this.props.history.push('/Dashboard'); 
+        this.props.history.push('/Dashboard/Ticket'); 
     }
+
+    async handleSubmit(event){
+        event.preventDefault();
+           
+         this.props.history.push('/Dashboard'); 
+     }
 
     handleChange(event){
         this.setState({
@@ -40,7 +47,8 @@ class Receipt extends Component{
     }
 
     render() {
-
+        
+        
         this.state.data = this.props.history.location.state;
         this.state.txnId= this.state.data.transaction_id;
         this.state.amt= this.state.data.price
@@ -66,6 +74,7 @@ class Receipt extends Component{
                         </div>
 
                         <input className="receipt-home" type="submit" onClick={this.handleSubmit} value="Go to Dashboard"/><br/>
+                        <input className="ticket-view" type="submit" onClick={this.ticketView} value="View Booked Ticket"/><br/>
                         </form>
                         
 
