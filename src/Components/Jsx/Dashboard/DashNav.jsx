@@ -9,12 +9,11 @@ import {SidebarData} from './SidebarData'
 import {Link} from 'react-router-dom';
 
 
-
 class DashNav extends Component {
     constructor(){
         super();
         this.state={
-            showMe:false
+            showMe:false,
         }
         this.handleLogout=this.handleLogout.bind(this)
         this.handleClick=this.handleClick.bind(this)
@@ -31,6 +30,7 @@ class DashNav extends Component {
    
     async handleLogout(event){
         event.preventDefault(); 
+        localStorage.clear();
         this.props.history.push('/Login')
     }
 
@@ -39,14 +39,16 @@ class DashNav extends Component {
             showMe: false
         })
     }
-   
+    
+
+    
     
     render() {
+
         return (
         <div>
             <div id="dashnav" className="sticky-top ">
               <button id="navbutton" ><FontAwesomeIcon style={{color:"white"}} onClick={this.handleClick} icon={ faBars } />  </button>
-
               <button id="logout" onClick={ this.handleLogout} ><FontAwesomeIcon icon={faSignOutAlt} />  </button>    
             </div>
 

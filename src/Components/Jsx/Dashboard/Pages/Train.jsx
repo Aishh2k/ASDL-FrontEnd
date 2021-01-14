@@ -9,6 +9,8 @@ class Train extends Component {
             Train1 : [],
             avail : [],
             res : [],
+            seats:'',
+            
 
         }
         this.changeRoute=this.changeRoute.bind(this)
@@ -17,12 +19,52 @@ class Train extends Component {
    
 
 
-    changeRoute(){
-        let path = `/Dashboard/Passenger`;
-        this.props.history.push(path)
+     changeRoute(index){
+
+        var form={
+            train_id: this.state.avail[index].train_id,
+            token: localStorage.getItem("token"),
+            seats: this.state.seats
+        }
+
+        localStorage.setItem("train_id",form.train_id)
+        console.log(localStorage.getItem("train_id"))
+
+       fetch("http://127.0.0.1:8000/booking/lock/",{
+           method: 'POST',
+           headers : {'Content-type': 'application/json'},
+           body: JSON.stringify(form)
+       })       
+       .then( data =>{ 
+           if (data.status=="201"){
+
+                data.json().then(body => {
+                    
+                    console.log(body);
+                    
+                    });
+
+                    console.log(form)
+
+
+                let path = `/Dashboard/Passenger`;
+                this.props.history.push({pathname : path , state : this.state.seats})
+
+
+            }
+
+        })
+        .catch( error => console.error(error))
+       
     }
+    
+    
     render() {
+
         this.state.Train1 = this.props.history.location.state;
+        this.state.seats= this.state.Train1.seats
+        console.log(this.state.seats)
+
         
 
         var obj = this.state.Train1.avail_train
@@ -66,16 +108,17 @@ class Train extends Component {
                         </tr>
                         </thead>
                         <tbody>
+                        
                         {
-                             this.state.avail.map((item) => (
-                                <tr>
-                                     <td>{item.train_id}</td>
+                             this.state.avail.map((item,index) => (
+                                <tr key={index}   >
+                                    <td>{item.train_id}</td>
                                     <td>{item.train_name}</td>
                                     <td>{item.departure}</td>
                                     <td>{item.arrival}</td>
                                     <td> ₹ {item.price}</td>
                                     <td>{item.available_seats}</td> 
-                                    <td><button onClick={this.changeRoute} className="btn btn-primary pull-right">Book</button></td>
+                                    <td><button  onClick={() => { this.changeRoute(index)}}  className="btn btn-primary pull-right">Book</button></td>
 
 
                                 </tr>

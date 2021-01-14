@@ -1,6 +1,6 @@
 .trainstatus{
     background-color: white;
-    padding-top: 150px;
+    padding-top: 100px;
 }
 
 .trainstat{
@@ -62,4 +62,9 @@
 .status-button:focus{
     border: none;
     outline: none;
+}
+
+
+.status-table{
+    margin-top: 30px;
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrain , faCalendarAlt, faUser} from "@fortawesome/free-solid-svg-icons";
+import { faTrain , faCalendarAlt, faUser, faPowerOff, faLayerGroup} from "@fortawesome/free-solid-svg-icons";
 import "../../../Css/Booking.css"
 
 
@@ -30,8 +30,12 @@ class Booking extends Component {
       }
 
     async handleSubmit(event){
+        event.preventDefault();
 
-       event.preventDefault();
+        localStorage.setItem("boarding",this.state.boarding);
+        localStorage.setItem("destination",this.state.destination)
+        console.log(localStorage.getItem("boarding"))
+
        var form={
             source:this.state.boarding,
             destination:this.state.destination,
@@ -52,6 +56,7 @@ class Booking extends Component {
         
       )
     .then( data =>{
+        data["seats"]=this.state.passengers;
         console.log(data)
         this.props.history.push({pathname : '/Dashboard/Train' , state : data})
         
@@ -85,8 +90,9 @@ class Booking extends Component {
                         </div>
 
                         <div  className="booking-textbox">
-                            
-                                <select classnName="selectclass" name="classoftravel" onChange={this.handleChange}>
+                        <FontAwesomeIcon  style={{marginRight:"7px"}}icon = {faLayerGroup} />
+
+                                <select style={{outline:"none", border:"none", backgroundColor:"whitesmoke",}} classnName="selectclass" name="classoftravel" onChange={this.handleChange}>
                                     <option value=" " disabled className="text-hide">Select Class</option>
                                     <option value="Sleeper Class">Sleeper Class</option>
                                     <option value="Third AC">Third AC</option>

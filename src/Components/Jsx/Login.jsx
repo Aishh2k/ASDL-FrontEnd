@@ -43,8 +43,24 @@ class Login extends Component {
            }
 
            else{
-            this.props.history.push('/Dashboard');  
-            console.log(data) }
+
+                data.json().then(body => {
+                    
+                    console.log(body);
+                    localStorage.setItem("token", body["token"]);
+                    localStorage.setItem("email", body["user_data"]["email"]);
+                    localStorage.setItem("user_id", body["user_data"]["user_id"]);
+                    localStorage.setItem("full_name", body["user_data"]["full_name"]);
+                    localStorage.setItem("age", body["user_data"]["age"]);
+                    localStorage.setItem("phoneNo", body["user_data"]["phoneNo"]);
+                    localStorage.setItem("loggedIn", true);
+                    
+                    });
+
+                
+                this.props.history.push('/Dashboard');  
+
+            }
 
            }
 

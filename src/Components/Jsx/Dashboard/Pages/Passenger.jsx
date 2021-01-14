@@ -11,7 +11,9 @@ class Passenger extends Component {
                 age: 0,
                 sex : "",
                 berth : ""
-            }]   
+            }] ,
+            seats:"",
+            error:""
 
         }
         this.handleSubmit=this.handleSubmit.bind(this);
@@ -65,22 +67,68 @@ class Passenger extends Component {
     async handleSubmit(event){
         event.preventDefault();
 
-        console.log(this.state.pax)
+        if (this.state.pax.length == this.state.seats ) {
 
-        let path = `/Dashboard/Payment`;
-        this.props.history.push(path)
+            this.setState({
+                error:""
+            })
+
+                console.log(this.state.pax)
+
+                var form={
+                    boarding: localStorage.getItem("boarding") ,
+                    destination: localStorage.getItem("destination") ,
+                    token:localStorage.getItem("token"),
+                    passenger_list: this.state.pax,
+                    train_id: localStorage.getItem("train_id")
+            }
+
+            console.log(form)
+
+            fetch("http://127.0.0.1:8000/booking/bookticket/",{
+                method: 'POST',
+                headers : {'Content-type': 'application/json'},
+                body: JSON.stringify(form)
+            })  
+            .then(response => 
+                response.json()
+                
+            )
+            .then( data =>{
+                console.log(data)
+                
+                let path = `/Dashboard/Payment`;
+                this.props.history.push({pathname : path , state : data})
+
+                
+            })
+
+        }
+
+        else{
+            this.setState({
+                error:`Enter ${this.state.seats} passenger details`
+            })
+        }
+     
           
-     }
+    }
     
 
 
     render() {
+
+        this.state.seats = this.props.history.location.state;
+
         return (
             <div id="content" style={{marginTop:"90px"}} >
                 <div id="train-deets">
-                <h4 style={{float:"left"}}> Passenger Details: </h4>
-                <button  onClick={(e) => this.addPax(e)} className="btn  mb-4 btn-primary pull-right" style={{float:"right",width:"80px"}}>Add</button>
+                    <h4 style={{float:"left",fontWeight:"bold"}}> Passenger Details   </h4> 
+                    <h4>(Seats reserved for 15 minutes)</h4>
+                    <button  onClick={(e) => this.addPax(e)} className="btn  mb-4 btn-primary pull-right" style={{float:"right",width:"80px"}}>Add</button>
                 </div>
+
+                <form onSubmit={this.handleSubmit}>
                     <table className="table table-bordered table-xs-responsive">
                         <thead className="thead-dark">  
                         <tr>
@@ -101,7 +149,7 @@ class Passenger extends Component {
                                     <td><input className ="Age" name="age" placeholder="Age" type="number" min="0" max="100" value={person.age} onChange={e => {this.ageChange(e,index)}}  required/></td>
                                     
                                     <td>
-                                    <select className="Sex" name="sex" onChange={e => {this.sexChange(e,index)}} value={person.sex}>
+                                    <select className="Sex" name="sex" onChange={e => {this.sexChange(e,index)}} value={person.sex} required>
                                     <option hidden value=" ">Sex</option>
                                     <option value="M">Male</option>
                                     <option value="F">Female</option>
@@ -110,7 +158,7 @@ class Passenger extends Component {
                                     </td>
                                     
                                     <td>
-                                    <select className="Berth" name="berth" onChange={e => {this.berthChange(e,index)}} value={person.berth}>
+                                    <select className="Berth" name="berth" onChange={e => {this.berthChange(e,index)}} value={person.berth} required>
                                     <option hidden value=" ">Berth</option>
                                     <option value="LB">Lower Berth</option>
                                     <option value="MB">Middle Berth</option>
@@ -128,12 +176,18 @@ class Passenger extends Component {
                             
                         </tbody>
                     </table>
+
+                
                     
-                    <div className="text-center">
+                     <div className="text-center">
 
-                <input style={{margin:"0 auto" ,width:"350px"}} className="pax-submit" className="btn mt-4 btn-primary" type="submit" onClick={this.handleSubmit} value="Make Payment"/><br/>
+                        <input style={{margin:"0 auto" ,width:"350px"}} className="pax-submit" className="btn mt-4 btn-primary" type="submit"  value="Make Payment"/>
+                        { this.state.error.length > 0 &&  
+                             <p  style={{marginTop:"20px"}}className='error'>{this.state.error}</p>}
+                        
+                    </div>
 
-                </div>
+                    </form>
                 </div>
                 
         )

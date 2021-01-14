@@ -1,13 +1,11 @@
 .payment{
     background-color: white;
+    padding-top: 100px;
 }
 
 .payment-form{
     width: 500px;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%,-50%);    
-    top: 50%;
+    margin: 0 auto;
     color: black;
     padding-top: 10px;
     padding-left: 40px;
