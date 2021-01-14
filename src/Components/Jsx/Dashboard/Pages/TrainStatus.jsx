@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrain } from "@fortawesome/free-solid-svg-icons";
-import "../../../Css/Payment.css"
+import "../../../Css/TrainStatus.css"
 
 class TrainStatus extends Component {
     
@@ -57,13 +57,13 @@ class TrainStatus extends Component {
     render() {
         return (
 
-            <div  id="trainstatus-main" className="trainstatus">
+            <div className="trainstatus">
 
                 <div className="trainstat">
 
-                    <h3>Train Status</h3>
+                    <h3 style={{marginTop:"10px",marginBottom:"10px"}}>Train Status</h3>
 
-                    <div className = "status-textbox">
+                    <div  className = "status-textbox">
 
                     <FontAwesomeIcon icon = {faTrain} />
                     <input className= "TrNo" name="trainNo" type="text" value={this.state.trainNo} onChange={this.handleChange} placeholder="Enter Train Number" required>
@@ -74,17 +74,15 @@ class TrainStatus extends Component {
 
                     </div>
 
-                    <div className = "status-button">
-                    <button onClick={this.showTable}>Check Status</button>
+                    <button className = "status-button" onClick={this.showTable}>Check Status</button>
                         
-                    </div>
 
                     <div className = "status-table">
                          
                     {
                         this.state.show &&
-                        <table className="table">
-                            <thead>
+                        <table className="table  table-bordered ">
+                            <thead className="thead-dark" >
                                  <tr>
                                     <th>Train No</th>
                                     <th>Train Name</th>
