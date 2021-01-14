@@ -1,0 +1,48 @@
+.trainstatus{
+    background-color: white;
+}
+
+.trainstat{
+    width: 500px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,-50%);    
+    top: 50%;
+    color: black;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom:25px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
+
+h3{
+    float: left;
+    font-size: 38px;
+    color: #ffffff;
+    border-bottom: 4px solid #ffffff;
+    margin-bottom: 40px;
+    padding: 13px 0;
+}
+
+.status-textbox{
+    width: 100%;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 9px 0;
+    margin: 5px 0;
+    border-bottom: 2px solid #ffffff;
+
+}
+
+.status-textbox input{
+    border: none;
+    outline: none;
+    background: none;
+    color: black;
+    font-size: 18px;
+    margin: 0 10px;
+}
