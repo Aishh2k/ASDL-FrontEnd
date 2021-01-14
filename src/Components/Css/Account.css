@@ -1,9 +1,13 @@
-
+*:focus{
+  outline:none;
+  border: none;
+}
 .account{
   position: absolute;
     width: 450px;
     padding: 15px 30px;
-    background: #ebf5f8;
+    background-color: whitesmoke;
+
     border-radius: 8px;
     position: fixed;
     left: 50%;
