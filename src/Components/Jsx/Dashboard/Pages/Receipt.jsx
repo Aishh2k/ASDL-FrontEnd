@@ -94,7 +94,7 @@ class Receipt extends Component{
                         </div>
 
                         <input className="receipt-home" type="submit" onClick={this.handleSubmit} value="Go to Dashboard"/><br/>
-                        <input className="ticket-view" type="submit" onClick={this.ticketView} value="View Booked Ticket"/><br/>
+                        <input className="ticket-view" type="submit" onClick={this.ticketView} value="View Booked Tickets"/><br/>
                         </form>
                         
 
