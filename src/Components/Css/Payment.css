@@ -9,7 +9,6 @@
     transform: translate(-50%,-50%);    
     top: 50%;
     color: black;
-    margin-top: 20px;
     padding-top: 10px;
     padding-left: 40px;
     padding-right: 40px;
@@ -17,6 +16,8 @@
     border-radius: 10px;
     background-color: whitesmoke;
 }
+
+
 
 
 h3{

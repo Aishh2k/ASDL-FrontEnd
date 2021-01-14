@@ -1,5 +1,5 @@
 .booking{
-    background-color: rgb(255, 255, 255);
+    background-color: whitesmoke;
 }
 
 .booking-form{
@@ -16,6 +16,9 @@
     border-radius: 10px;
     background-color: whitesmoke;
 }
+
+
+
 
 h3{
     float: left;
@@ -54,7 +57,7 @@ h3{
     border: 0;
   }
 
-.submit_booking{
+  .submit_booking{
     width: 100%;
     background: orangered;
     border: 3px solid #ffffff;
@@ -65,9 +68,14 @@ h3{
     margin-top:30px;
     outline: none;
     padding:12px;
+    border: none;
     
 }
 
+.submit_booking:focus{
+    border: none;
+    outline:none;
+}
 
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);
