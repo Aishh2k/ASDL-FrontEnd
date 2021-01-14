@@ -30,8 +30,28 @@ class Receipt extends Component{
 
     async ticketView(event){
        event.preventDefault();
-          
-        this.props.history.push('/Dashboard/Ticket'); 
+
+
+        var form={
+            transaction_id: this.state.txnId,
+            token: localStorage.getItem("token")
+        }
+      fetch("http://127.0.0.1:8000/booking/get_transaction_tickets/",{
+        method: 'POST',
+        headers : {'Content-type': 'application/json'},
+        body: JSON.stringify(form)
+    })  
+    .then(response => 
+        response.json()
+        
+      )
+    .then( data =>{
+        console.log(data)
+        this.props.history.push({pathname : '/Dashboard/Ticket' , state : data})
+        
+    })
+     
+    
     }
 
     async handleSubmit(event){
