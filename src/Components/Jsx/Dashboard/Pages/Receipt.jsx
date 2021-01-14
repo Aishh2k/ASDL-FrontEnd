@@ -11,9 +11,10 @@ class Receipt extends Component{
         super()
         this.state={
 
-            txnId : randomstring.generate(9),
+            txnId : "",
             dateTime : moment().format('MMMM Do YYYY, h:mm:ss a'),
-            amt : 0
+            amt : 0,
+            data:""
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -39,6 +40,12 @@ class Receipt extends Component{
     }
 
     render() {
+
+        this.state.data = this.props.history.location.state;
+        this.state.txnId= this.state.data.transaction_id;
+        this.state.amt= this.state.data.price
+        console.log(this.state.data)
+
         return (
 
             <div className="receipt">
@@ -55,7 +62,7 @@ class Receipt extends Component{
                         </div>
                         
                         <div className="receipt-label">
-                            <label>Amount : {this.state.amt}</label>
+                            <label>Amount :  ₹ {this.state.amt}</label>
                         </div>
 
                         <input className="receipt-home" type="submit" onClick={this.handleSubmit} value="Go to Dashboard"/><br/>

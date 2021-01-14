@@ -1,5 +1,5 @@
 import React from 'react'
-import { faBars, faHome, faListAlt, faMoneyCheckAlt, faShoppingBasket, faTicketAlt, faTruckMoving, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faHome, faList, faListAlt, faMoneyCheckAlt, faShoppingBasket, faTicketAlt, faTruckMoving, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 
 export const SidebarData =[
@@ -15,6 +15,14 @@ export const SidebarData =[
         path:'/Dashboard/Booking',
         cName:'sidebar-item',
         icon: faTicketAlt
+
+    },
+    {
+        title:'Booked Tickets',
+        path:'/Dashboard/BookingHistory',
+        cName:'sidebar-item',
+        icon: faList
+
 
     },
     {

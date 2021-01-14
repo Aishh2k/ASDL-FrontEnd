@@ -9,7 +9,7 @@ class Passenger extends Component {
         pax : [{
                 name:"",
                 age: 0,
-                sex : "",
+                gender : "",
                 berth : ""
             }] ,
             seats:"",
@@ -49,7 +49,7 @@ class Passenger extends Component {
        
 
     sexChange(event,index){
-        this.state.pax[index].sex = event.target.value
+        this.state.pax[index].gender = event.target.value
         this.setState({
             pax : this.state.pax
         })
@@ -90,28 +90,25 @@ class Passenger extends Component {
                 headers : {'Content-type': 'application/json'},
                 body: JSON.stringify(form)
             })  
-            .then(response => 
-                response.json()
-                
-            )
-            .then( data =>{
-                console.log(data)
-                
-                let path = `/Dashboard/Payment`;
-                this.props.history.push({pathname : path , state : data})
 
-                
-            })
+            .then( data =>{ 
+                if (data.status=="201")
+                {
+                     data.json().then(body => {
+                         
+                         console.log(body);
 
-        }
-
-        else{
-            this.setState({
-                error:`Enter ${this.state.seats} passenger details`
-            })
-        }
+                         let path = `/Dashboard/Payment`;
+                         this.props.history.push({pathname : path , state : body})
+                    })
+                }
      
-          
+            })
+             
+            .catch( error => console.error(error))
+     
+    
+        }
     }
     
 
@@ -149,22 +146,22 @@ class Passenger extends Component {
                                     <td><input className ="Age" name="age" placeholder="Age" type="number" min="0" max="100" value={person.age} onChange={e => {this.ageChange(e,index)}}  required/></td>
                                     
                                     <td>
-                                    <select className="Sex" name="sex" onChange={e => {this.sexChange(e,index)}} value={person.sex} required>
+                                    <select className="Sex" name="sex" onChange={e => {this.sexChange(e,index)}} value={person.gender} required>
                                     <option hidden value=" ">Sex</option>
-                                    <option value="M">Male</option>
-                                    <option value="F">Female</option>
-                                    <option value="O">Others</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Others">Others</option>
                                     </select>
                                     </td>
                                     
                                     <td>
                                     <select className="Berth" name="berth" onChange={e => {this.berthChange(e,index)}} value={person.berth} required>
                                     <option hidden value=" ">Berth</option>
-                                    <option value="LB">Lower Berth</option>
-                                    <option value="MB">Middle Berth</option>
-                                    <option value="UB">Upper Berth</option>
-                                    <option value="SL">Side Lower</option>
-                                    <option value="SU">Side Upper</option>
+                                    <option value="Lower Berth">Lower Berth</option>
+                                    <option value="Middle Berth">Middle Berth</option>
+                                    <option value="Upper Berth">Upper Berth</option>
+                                    <option value="Side Lower">Side Lower</option>
+                                    <option value="Side Upper">Side Upper</option>
                                     </select>
                                     </td>
                                     

@@ -18,7 +18,7 @@ class BookingHistory extends Component{
 
             
 
-                    <div id="booking-history" className="booking-history" style={{paddingTop:"150px"}}>
+                    <div id="booking-history" className="booking-history" style={{paddingTop:"80px"}}>
 
                         <h2>Booking History</h2>
                         <div className="history-table">

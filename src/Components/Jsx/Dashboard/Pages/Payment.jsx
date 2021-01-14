@@ -15,6 +15,8 @@ class Payment extends Component {
             name : "",
             cvv : "",
             expiry : "",
+            data:"",
+            price:" "
 
         }
 
@@ -31,13 +33,20 @@ class Payment extends Component {
       async handleSubmit(event){
         event.preventDefault();
            
-        this.props.history.push('/Dashboard/Receipt');  
+        let path = '/Dashboard/Receipt';
+        this.props.history.push({pathname : path , state : this.state.data})
      }
     
     
     
     
     render() {
+
+        this.state.data = this.props.history.location.state;
+        console.log(this.state.data)
+        this.state.price="₹ " + this.state.data.price
+         
+
         return (
             <div  id="payment-main" className="payment">
                 
@@ -66,7 +75,7 @@ class Payment extends Component {
                             <input classname ="expiry" name="expiry" placeholder="Date of Expiry" type="text" value={this.state.expiry} onChange={this.handleChange}  required/>
                             
                         </div>
-                        <input className="payment-submit" type="submit" onClick={this.handleSubmit} value="Make Payment"/><br/>
+                        <input className="payment-submit" type="submit" onClick={this.handleSubmit} value={this.state.price} /><br/>
                     </form>
 
 
