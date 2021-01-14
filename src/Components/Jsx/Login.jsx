@@ -35,7 +35,7 @@ class Login extends Component {
            body: JSON.stringify(form)
        })       
        .then( data =>{ 
-           if (data.status=="400" || data.status=="404")
+           if (data.status != "200")
            {
                this.setState({
                    errors: "Invalid credentials. Please try again."
@@ -43,6 +43,9 @@ class Login extends Component {
            }
 
            else{
+                this.setState({
+                    errors: ""
+                })
 
                 data.json().then(body => {
                     
