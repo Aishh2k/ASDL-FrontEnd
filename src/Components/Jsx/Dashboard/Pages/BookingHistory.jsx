@@ -7,7 +7,8 @@ class BookingHistory extends Component{
 
         this.state ={
             trans :[],
-            details:[{}]
+            details:[{}],
+            len : 0
         }
         
 
@@ -34,13 +35,13 @@ class BookingHistory extends Component{
         this.setState({
             details: data
         })
-        console.log(this.state.details)
+        //console.log(this.state.details)
         
     })
      
     }
 
-
+    
     render(){
 
         // console.log("debugg:"+ this.state.details.bookings)
@@ -49,7 +50,16 @@ class BookingHistory extends Component{
             if (obj.hasOwnProperty(key)) {           
                 // console.log(key, obj[key]);
                 var val = obj[key];
-                this.state.trans.push({ key:val})
+                
+                var temp = []
+
+                for (var k in val){
+                    if(val.hasOwnProperty(k)){
+                        temp.push(val[k])
+                    }
+                }
+
+                this.state.trans.push(temp)
 
                 // val.map((item,index) =>(
                 //     console.log(item)
@@ -57,7 +67,9 @@ class BookingHistory extends Component{
                 // ))
             }
         }
-        // console.log(this.state.trans)
+        //console.log(this.state.trans)
+
+       
         
         return(
 
@@ -75,20 +87,23 @@ class BookingHistory extends Component{
                             <table className="table table-bordered table-xs-responsive">
                             <tbody>
                                 <tr>
-                                    <td>PNR : 2234</td>   
-                                    <td>Transcation ID : 12ER56HJ90LMX</td>
+                                    {/* {console.log(item)}
+                                    {console.log(index)} */}
+                                      
+                                    <td>Transcation ID : {item[0].data.transaction_id}</td>
+                                    <td>Train Name : {item[0].data.train.train_name}</td>
+                                </tr>
+                                {/* <tr>
+                                    <td>Train Number : {} </td>   
+                                    <td>Train Name : {item[0].data.train.train_name}</td>
+                                </tr> */}
+                                <tr>
+                                    <td>From : {item[0].data.boarding} </td>
+                                    <td>To : {item[0].data.destination}</td>
                                 </tr>
                                 <tr>
-                                    <td>Train Number : 12565 </td>   
-                                    <td>Train Name : Konasa Express</td>
-                                </tr>
-                                <tr>
-                                    <td>From : EKM </td>
-                                    <td>To : BLR</td>
-                                </tr>
-                                <tr>
-                                    <td>Departure : 12:00 AM </td>   
-                                    <td>Arrival : 12:00 PM</td>
+                                    <td>Departure : {item[0].data.train.departure_time} </td>   
+                                    <td>Arrival : {item[0].data.train.arrival_time}</td>
                                 </tr>
                             </tbody>
                                 
@@ -99,6 +114,7 @@ class BookingHistory extends Component{
                             <table className="table table-bordered table-xs-responsive">
                                         <thead className="thead-dark">
                                             <tr>
+                                                <th>Ticket ID</th>
                                                 <th>Name</th>
                                                 <th>Age</th>
                                                 <th>Sex</th>
@@ -107,18 +123,29 @@ class BookingHistory extends Component{
                                             </tr>
                                         </thead>
 
+
+
                                         <tbody>
-                                            {
-                                                <tr>
-                                                    <td>Ann Mary</td>
-                                                    <td>12</td>
-                                                    <td>F</td>
-                                                    <td>47</td>
-                                                    <td>SL</td>
-                                                </tr>
 
                                             
-                                                
+                                            {    item.map((a,i) => (
+                                               
+                                                 
+                                                <tr key={i}>
+
+                                                    
+
+                                                    
+                                                    <td>{a.data.ticket_number}</td>
+                                                    <td>{a.data.passenger.name}</td>
+                                                    <td>{a.data.passenger.age}</td>
+                                                    <td>{a.data.passenger.gender}</td>
+                                                    <td>{a.data.seat_no}</td>
+                                                    <td>{a.data.passenger.berth}</td>
+                                                </tr>
+
+                                                    
+                                            ))    
                                             }
                                         </tbody>
                             </table>
