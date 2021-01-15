@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import {  Modal , Button } from 'react-bootstrap'
+
 
 class BookingHistory extends Component{
 
@@ -8,38 +10,88 @@ class BookingHistory extends Component{
         this.state ={
             trans :[],
             details:[{}],
-            len : 0
+            len : 0,
+            show:false,
+            errors:""
         }
+
+        this.handleCancle=this.handleCancle.bind(this)
+        this.onHide=this.onHide.bind(this)
         
 
     }
 
+    handleCancle(index){
+        var form={
+            transaction_id: this.state.trans[index][0].data.transaction_id,
+            token: localStorage.getItem("token"),
+        }
 
+        console.log(form)
+
+        fetch("http://127.0.0.1:8000/booking/cancel_ticket_by_transaction/",{
+        method: 'POST',
+        headers : {'Content-type': 'application/json'},
+        body: JSON.stringify(form)
+        })  
+        
+        .then( data =>{ 
+         
+                this.setState({
+                    show:true
+                })
+            
+
+        })
+        .catch( error => console.error(error))
+
+ }
     componentDidMount(){
         var token= {
             "token" : localStorage.getItem("token")
         }
-
-        // console.log(localStorage.getItem("token"))
         
 
-      fetch("http://127.0.0.1:8000/user/user_bookings_history/",{
-        method: 'POST',
-        headers : {'Content-type': 'application/json'},
-        body: JSON.stringify(token)
-    })  
-    .then(response => 
-        response.json()  
-      )
-    .then( data =>{
-        this.setState({
-            details: data
+        fetch("http://127.0.0.1:8000/user/user_bookings_history/",{
+            method: 'POST',
+            headers : {'Content-type': 'application/json'},
+            body: JSON.stringify(token)
+        })  
+        .then( data =>{ 
+            if (data.status !="200")
+            {
+                this.setState({
+                    errors: "No previous bookings!"
+                })
+            }
+
+
+            else if(data.status=="200") {
+                data.json().then( body =>{
+                    this.setState({
+                        details: body,
+                        errors:""
+                    })
+                })
+
+            }
+        
         })
-        //console.log(this.state.details)
-        
-    })
-     
+
     }
+
+
+    onHide(){
+        this.setState({
+            show:false
+        })
+
+        window.location.reload();
+
+
+    }
+
+
 
     
     render(){
@@ -70,12 +122,17 @@ class BookingHistory extends Component{
         //console.log(this.state.trans)
 
        
-        
+
         return(
 
                     <div id="booking-history" className="booking-history" style={{paddingTop:"80px", margin: "0 60px"}}>
 
                         <p style={{marginBottom:"0px", fontSize:"40px"}}>Booking History</p>
+
+                        { this.state.errors.length > 0 &&  
+                             <p style={{marginTop:"20px", marginLeft:"4px",color:"red"}}>{this.state.errors}</p>}
+
+
                         
                         {
                             
@@ -102,8 +159,9 @@ class BookingHistory extends Component{
                                     <td>To : {item[0].data.destination}</td>
                                 </tr>
                                 <tr>
-                                    <td>Departure : {item[0].data.train.departure_time} </td>   
-                                    <td>Arrival : {item[0].data.train.arrival_time}</td>
+                                    <td>Arrival : {item[0].data.train.arrival_time.replace("T"," ").replace("Z"," ")}</td>
+
+                                    <td>Departure : {item[0].data.train.departure_time.replace("T"," ").replace("Z"," ")} </td>   
                                 </tr>
                             </tbody>
                                 
@@ -150,9 +208,12 @@ class BookingHistory extends Component{
                                         </tbody>
                             </table>
 
+                        <div style={{textAlign:"center"}}>  
+
+                            <button className = " cancel-button" onClick={() => { this.handleCancle(index)}} >Cancel Booking</button>
 
                         <hr  style={{
-                            margin: "40px -30px",
+                            margin: "30px -30px",
                             color: '#000000',
                             backgroundColor: '#000000',
                             height: .4,
@@ -162,11 +223,38 @@ class BookingHistory extends Component{
 
                         </div>
 
+
+
+                        </div>
+
+
                         
                         
 
 
                         )) }
+
+
+
+                <Modal style={{height:"400px"}}
+                  show={this.state.show}
+                  dialogClassName="modal-90w"
+                  aria-labelledby="example-custom-modal-styling-title"                  
+                  centered
+                >
+                  
+                    <Modal.Body style={{margin: '10px'}}>
+                        <p style={{textAlign:"center"}}>{localStorage.getItem("full_name") }, your booking has been sucessfully cancelled! </p>
+                        
+                    </Modal.Body>
+                    <Modal.Footer>
+    
+                        
+                            <Button  variant="primary" onClick={this.onHide}>Ok</Button>
+
+                    </Modal.Footer>
+
+                </Modal>
                         
 
                     </div>

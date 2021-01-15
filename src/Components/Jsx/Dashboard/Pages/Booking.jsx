@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrain , faCalendarAlt, faUser, faPowerOff, faLayerGroup} from "@fortawesome/free-solid-svg-icons";
+import { faTrain , faCalendarAlt, faUser,  faLayerGroup} from "@fortawesome/free-solid-svg-icons";
 import "../../../Css/Booking.css"
 
 
@@ -51,16 +50,25 @@ class Booking extends Component {
         headers : {'Content-type': 'application/json'},
         body: JSON.stringify(form)
     })  
-    .then(response => 
-        response.json()
-        
-      )
+
     .then( data =>{
-        data["seats"]=this.state.passengers;
-        console.log(data)
-        this.props.history.push({pathname : '/Dashboard/Train' , state : data})
-        
+        if (data.status != "200"){
+            alert("Trains not available!")
+        }
+
+
+        else{
+
+            data.json().then(response =>{ 
+                response["seats"]=this.state.passengers;
+                console.log(response)
+                this.props.history.push({pathname : '/Dashboard/Train' , state : response})
+                
+            })
+
+        }
     })
+    
      
 
     }

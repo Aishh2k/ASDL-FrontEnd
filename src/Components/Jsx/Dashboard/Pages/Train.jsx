@@ -114,8 +114,8 @@ class Train extends Component {
                                 <tr key={index}   >
                                     <td>{item.train_id}</td>
                                     <td>{item.train_name}</td>
-                                    <td>{item.departure}</td>
-                                    <td>{item.arrival}</td>
+                                    <td>{item.departure.replace("T"," ").replace("Z"," ")}</td>
+                                    <td>{item.arrival.replace("T"," ").replace("Z"," ")}</td>
                                     <td> ₹ {item.price}</td>
                                     <td>{item.available_seats}</td> 
                                     <td><button  onClick={() => { this.changeRoute(index)}}  className="btn btn-primary pull-right">Book</button></td>
@@ -152,11 +152,11 @@ class Train extends Component {
                                 <tr>
                                 <td>{item.train_id}</td>
                                <td>{item.train_name}</td>
-                               <td>{item.departure}</td>
-                               <td>{item.arrival}</td>
+                               <td>{item.departure.replace("T"," ").replace("Z"," ")}</td>
+                               <td>{item.arrival.replace("T"," ").replace("Z"," ")}</td>
                                <td> ₹ {item.price}</td>
                                <td>WL - {item.reservation_queue}</td>
-                               <td><button onClick={this.changeRoute} className="btn btn-primary pull-right">Book</button></td>
+                               <td><button disabled className="btn btn-primary pull-right">Book</button></td>
 
 
                            </tr>

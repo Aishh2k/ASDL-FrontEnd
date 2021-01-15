@@ -9,7 +9,12 @@ export class Ticket extends Component {
             txns : []
         };
 
-    
+    this.handleSubmit=this.handleSubmit.bind(this)
+    }
+
+
+    handleSubmit(){
+        this.props.history.push('/Dashboard')
     }
 
 

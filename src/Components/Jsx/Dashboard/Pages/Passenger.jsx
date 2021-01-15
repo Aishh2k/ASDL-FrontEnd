@@ -58,14 +58,19 @@ class Passenger extends Component {
 
     addPax = e => {
         e.preventDefault()
-        
-        this.setState({pax : [...this.state.pax,{}]})
+        if (this.state.pax.length < this.state.seats ) {
+            
+            this.setState({pax : [...this.state.pax,{}]})
+        }
     }
 
    
 
     async handleSubmit(event){
         event.preventDefault();
+
+        console.log(this.state.pax)
+        console.log(this.state.seats)
 
         if (this.state.pax.length == this.state.seats ) {
 
@@ -108,6 +113,12 @@ class Passenger extends Component {
             .catch( error => console.error(error))
      
     
+        }
+
+        else{
+            this.setState({
+                error:`Enter ${this.state.seats} passenger details!`
+            })
         }
     }
     

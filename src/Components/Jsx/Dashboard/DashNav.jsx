@@ -48,8 +48,9 @@ class DashNav extends Component {
         return (
         <div>
             <div id="dashnav" className="sticky-top ">
-              <button id="navbutton" ><FontAwesomeIcon style={{color:"white"}} onClick={this.handleClick} icon={ faBars } />  </button>
-              <button id="logout" onClick={ this.handleLogout} ><FontAwesomeIcon icon={faSignOutAlt} />  </button>    
+              <button id="navbutton" ><FontAwesomeIcon style={{color:"white"}} onClick={this.handleClick} icon={ faBars } /> </button>
+              <button id="logout" onClick={ this.handleLogout} ><h4 style={{color:"white",margin:"10px 15px 0 0 ", float:"left"}}>Logout</h4> <FontAwesomeIcon icon={faSignOutAlt} />  </button>   
+                
             </div>
 
 

@@ -62,6 +62,11 @@ h2{
     
 }
 
+.login-submit:focus, .login-submit:active{
+    border: 3px solid #ffffff;
+
+}
+
 ::placeholder{
     color: grey;
 }

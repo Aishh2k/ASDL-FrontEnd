@@ -61,6 +61,11 @@ h2{
     
 }
 
+.register-submit:focus, .register-submit:active{
+    border: 3px solid #ffffff;
+
+}
+
 .Rname::placeholder{
     color: white;
     opacity: 1;

@@ -81,8 +81,11 @@ class TrainStatus extends Component {
 
     handleChange(event){
         this.setState({
-            [ event.target.name ] : event.target.value
+            [ event.target.name ] : event.target.value,
+            show:false
           })
+
+
       }
 
       async handleSubmit(event){
