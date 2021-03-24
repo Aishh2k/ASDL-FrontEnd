@@ -1,1 +1,4 @@
-# ASDL-FrontEnd
+# ASDL MiniProject Railway Ticket Reservation System
+The Indian Railways (IR) is the third largest railway network in the world, in 2019 it was instrumental in carrying  around 8.4 billion passengers , 1.23 billion tonnes of freight and operated a whopping 13,523 Passenger trains and 9,146 cargo trains covering almost 7,321 stations on a daily basis. Considering that the majority of the population is still dependent on the railways for point to point travel , it’s optimal that we have a robust platform that can facilitate the end users' needs while offering the highest level of convenience.
+
+Our proposed railway reservation web app hopes to offer an easy to use platform that will facilitate users to perform multiple operations such as train enquiry, ticket booking, ticket cancellation and view status updates. Finally the database administrator can independently oversee each and every transaction and operation. 
