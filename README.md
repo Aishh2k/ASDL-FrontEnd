@@ -3,5 +3,7 @@ The Indian Railways (IR) is the third largest railway network in the world, in 2
 
 Our proposed railway reservation web app hopes to offer an easy to use platform that will facilitate users to perform multiple operations such as train enquiry, ticket booking, ticket cancellation and view status updates. Finally the database administrator can independently oversee each and every transaction and operation. 
 
+Full Report: https://docs.google.com/document/d/1pa-MnRXiU72Xl44LvOB74cWsykJxEVc5i2vG0uYOY1Y/edit?usp=sharing
+
 ![Screenshot (123)](https://user-images.githubusercontent.com/42784969/112289831-a549a100-8cb4-11eb-9df4-fc745f69863d.png)
 ![Screenshot (114)](https://user-images.githubusercontent.com/42784969/112289743-92cf6780-8cb4-11eb-8d63-dba925e58c1e.png)
